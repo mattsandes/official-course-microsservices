@@ -3,6 +3,8 @@ package br.com.sandes.controllers;
 import br.com.sandes.model.Book;
 import br.com.sandes.proxy.CambioProxy;
 import br.com.sandes.repositories.BookRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Book endpoint")
 @RestController
 @RequestMapping("book-service")
 public class BookController {
@@ -57,6 +60,7 @@ public class BookController {
 //        return book;
 //    }
 
+    @Operation(summary = "Find a specific book by your ID")
     @GetMapping(value = "/{id}/{currency}")
     public Book findBook(
             @PathVariable("id") Long id,
